@@ -31,17 +31,15 @@ class Product extends Model
         }
     }
 
-    public static function productUpdate($id, $title, $description, $price, $discountPercentage, $rating, $stock, $brand, $category, $thumbnail)
+    public static function productUpdate($id, $title, $description, $price, $discountPercentage, $stock, $brand, $category)
     {
         $ProductUpdated['title'] = $title;
         $ProductUpdated['description'] = $description;
         $ProductUpdated['price'] = $price;
         $ProductUpdated['discountPercentage'] = $discountPercentage;
-        $ProductUpdated['rating'] = $rating;
         $ProductUpdated['stock'] = $stock;
         $ProductUpdated['brand'] = $brand;
         $ProductUpdated['category'] = $category;
-        $ProductUpdated['thumbnail'] = $thumbnail;
         $ProductUpdated['updated_at'] = date('Y-m-d H:i:s');
 
         self::where('id', $id)->update($ProductUpdated);

@@ -16,6 +16,25 @@
                     </div>
                 </div>
             </div>
+            @if (session()->has('success'))
+                <div class="alert alert-success d-flex align-items-center d-flex align-items-center" role="alert">
+                    <span class="fas fa-check-circle text-success fs-3 me-3"></span>
+                    <p class="mb-0 flex-1">
+                        <strong> Berhasil! :</strong> {{ session()->get('success') }}
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            @if (session()->has('error'))
+                <div class="alert alert-danger d-flex align-items-center d-flex align-items-center" role="alert">
+                    <span class="fas fa-times-circle text-danger fs-3 me-3"></span>
+                    <p class="mb-0 flex-1">
+                        <strong> Error! :</strong> {{ session()->get('error') }}
+                    </p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             @foreach ($products as $product)
                 <div class="row justify-content-center mb-3">
                     <div class="col-md-12 col-xl-10">
@@ -56,7 +75,8 @@
                                                 class="text-danger"><s>${{ (int) $product->discountPercentage }}</s></span>
                                         </div>
                                         <div class="d-flex flex-column mt-4">
-                                            <button class="btn btn-primary btn-sm" type="button">Update</button>
+                                            <a href="{{ route('update', [$product->id]) }}" class="btn btn-primary btn-sm"
+                                                type="button">Update</a>
                                             <a href="{{ route('detail', [$product->id]) }}"
                                                 class="btn btn-outline-primary btn-sm mt-2" type="button">
                                                 Detail
