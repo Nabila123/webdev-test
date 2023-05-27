@@ -21,6 +21,9 @@ class ProductController extends Controller
     public function detail($id)
     {
         $product = Product::where('id', $id)->first();
+        $product->images = preg_replace('/[^A-Za-z0-9\-\:\/\,\.\*\& ]/', '', $product->images);
+        $product->images = explode (",",$product->images);
+
         return view('detail', ['product' => $product]);
     }
 }
